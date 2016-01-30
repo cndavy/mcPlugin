@@ -1,0 +1,29 @@
+name: buildClone
+main: net.han.BuildClonePlugin
+version: 1
+author: xiao_xi
+commands:
+   xiaoxi:
+      description: This is a demo command.
+      usage: /xiaoxi [cmd] [amount] [] []
+      permission: buildClone.basic
+      permission-message: You don't have <permission>
+permissions:
+    doorman.*:
+        description: Gives access to all doorman commands
+        children:
+            doorman.kick: true
+            doorman.ban: true
+            doorman.knock: true
+            doorman.denied: false
+    doorman.kick:
+        description: Allows you to kick a user
+        default: op
+    doorman.ban:
+        description: Allows you to ban a user
+        default: op
+    doorman.knock:
+        description: Knocks on the door!
+        default: true
+    doorman.denied:
+        description: Prevents this user from entering the door
