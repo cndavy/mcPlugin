@@ -5,10 +5,22 @@ author: xiao_xi
 commands:
    xiaoxi:
       description: This is a demo command.
-      usage: /xiaoxi [cmd] [amount] [] []
-      permission: buildClone.basic
+      usage: /xiaoxi [c/v/m] [x] [y] [z]
+      permission: buildClone.*
       permission-message: You don't have <permission>
 permissions:
+    buildClone.*:
+        description: copy or paste build
+        children:
+            buildClone.c: true
+            buildClone.v: true
+    buildClone.c:
+        description: Allows you to kick a user
+        default: op
+    buildClone.v:
+        description: Allows you to kick a user
+        default: op
+
     doorman.*:
         description: Gives access to all doorman commands
         children:
