@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="buildClone:jar">
+    <output-path>F:/MC/spi/plugins</output-path>
+    <root id="archive" name="buildClone.jar">
+      <element id="module-output" name="buildClone" />
+    </root>
+  </artifact>
+</component>

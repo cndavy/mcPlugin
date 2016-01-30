@@ -1,6 +1,5 @@
 package net.han;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.command.Command;
@@ -34,12 +33,12 @@ public class MyPluginCommandExecutor implements CommandExecutor {
             return false;
         }
 
-        Player target = (Bukkit.getServer().getPlayer(args[0]));
+     /*   Player target = (Bukkit.getServer().getPlayer(args[0]));
         if (target == null) {
             sender.sendMessage(args[0] + " is not online!");
             plugin.getLogger().info(args[0]);
             return false;
-        }
+        }*/
         String cmdCV=args[0];
         String  X= args[1];
         String  Y =args[2];
