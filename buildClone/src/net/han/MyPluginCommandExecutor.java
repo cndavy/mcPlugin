@@ -7,10 +7,13 @@ import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.FallingBlock;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
@@ -34,25 +37,8 @@ public class MyPluginCommandExecutor implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
- /*       if (args.length > 5) {
-            sender.sendMessage("Too many arguments!");
-            return false;
-        }
-        if (args.length < 3) {
-            sender.sendMessage("Not enough arguments!");
-            return false;
-        }
-*/
-     /*   Player target = (Bukkit.getServer().getPlayer(args[0]));
-        if (target == null) {
-            sender.sendMessage(args[0] + " is not online!");
-            plugin.getLogger().info(args[0]);
-            return false;
-        }*/
-        String cmdCV=args[0];
-        String  X= args[1];
-        String  Y =args[2];
-        String  Z=args[3];
+
+
     //    plugin.getLogger().info(cmdCV + " X=" + X + ",Y=" + Y + ",Z=" + Z);
         if (sender instanceof Player) {
             Player player = (Player) sender;
@@ -62,16 +48,33 @@ public class MyPluginCommandExecutor implements CommandExecutor {
                 world = player.getWorld();
                 location = player.getLocation();
                 inventory = player.getInventory();
-                if (args[0].equalsIgnoreCase("m"))
-                    generateCube(  location,Integer.parseInt(args[1]),Integer.parseInt(args[2]),Integer.parseInt(args[3]));
+                if (args.length==4) {
+                    String cmdCV=args[0];
+                    String  X= args[1];
+                    String  Y =args[2];
+                    String  Z=args[3];
+                    if (args[0].equalsIgnoreCase("m"))
+                        generateCube(location, Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3]));
 
-                if (args[0].equalsIgnoreCase("c"))
-                    copyCube(location, Integer.parseInt(args[1]), Integer.parseInt(args[2]),Integer.parseInt(args[3]));
+                    if (args[0].equalsIgnoreCase("c"))
+                        copyCube(location, Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3]));
 
-                if (args[0].equalsIgnoreCase("v"))
-                    pasteCube(location, Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3]));
+                    if (args[0].equalsIgnoreCase("v"))
+                        pasteCube(location, Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3]));
+                    return true;
+                }else if (args.length==2){
+                    if (args[0].equalsIgnoreCase("x")) {
+                        List<String> lores = new ArrayList<String>();
+                        lores.add("Example lore");
+                        lores.add("this one comes on line 2");
+                        ItemStack myItem = new ItemStack(Material.DIAMOND_SWORD);  //your item
+                        myItem.addEnchantment(Enchantment.DAMAGE_ALL, Integer.parseInt(args[1]));  //enchant the item
+                        ItemMeta im = myItem.getItemMeta(); //get the itemmeta of the item again
+                        im.setLore(lores); //add the lores of course
+                        myItem.setItemMeta(im); //give the item the new itemmeta
+                    }
+                }
 
-                return true;
             }
         } else {
             sender.sendMessage("You must be a player!");

@@ -24,6 +24,7 @@ public final class BuildClonePlugin extends JavaPlugin {
     public void onEnable() {
         getLogger().info("xiao_xi 插件激活!");
         this.getCommand("xiaoxi").setExecutor(new MyPluginCommandExecutor(this));
+         this.getServer().getPluginManager().registerEvents(new BuildCloneEventExecutor(this) ,this);
         for (Player player : Bukkit.getServer().getOnlinePlayers()) {
 
             playerList.put(player.getName(), playerData(player));
@@ -39,27 +40,6 @@ public final class BuildClonePlugin extends JavaPlugin {
     public void onDisable() {
         getLogger().info("xiao_xi 插件退出!");
     }
-    public void onPlayerJoin(PlayerJoinEvent evt) {
-        Player player = evt.getPlayer(); // The player who joined
-        PlayerInventory inventory = player.getInventory(); // The player's inventory
-        ItemStack itemstack = new ItemStack(Material.DIAMOND, 64); // A stack of diamonds
 
-        if (inventory.contains(itemstack)) {
-            inventory.addItem(itemstack); // Adds a stack of diamonds to the player's inventory
-            player.sendMessage("Welcome! You seem to be reeeally rich, so we gave you some more diamonds!");
-        }
-    }
-
-    @EventHandler
-    public void onPlayerMove(PlayerMoveEvent event) {
-        // Get the player's location.
-        Location loc = event.getPlayer().getLocation();
-        // Sets loc to five above where it used to be. Note that this doesn't change the player's position.
-        loc.setY(loc.getY() + 5);
-        // Gets the block at the new location.
-        Block b = loc.getBlock();
-        // Sets the block to type id 1 (stone).
-        b.setType(Material.STONE);
-    }
 
 }
