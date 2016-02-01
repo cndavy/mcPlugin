@@ -1,15 +1,7 @@
 package net.han;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
@@ -29,6 +21,8 @@ public final class BuildClonePlugin extends JavaPlugin {
 
             playerList.put(player.getName(), playerData(player));
         }
+
+
     }
 
     private Object playerData(Player player) {
